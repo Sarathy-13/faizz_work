@@ -409,3 +409,200 @@ footer {
         text-align: center;
     }
 }
+/* Social Services Section */
+.social-services {
+    background: #f9fafc;
+    padding: 80px 0;
+}
+
+.social-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    height: 200px;
+    box-shadow: var(--shadow-sm);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.social-video-container {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.social-video-container video {
+    width: 100%;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .social-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+    }
+    .gallery-item {
+        height: 250px;
+    }
+}
+/* Colleges Grid Update */
+.colleges-scroll-container {
+    overflow-x: auto;
+    padding: 20px 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    cursor: grab;
+}
+
+.colleges-scroll-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.colleges-scroll-container:active {
+    cursor: grabbing;
+}
+
+.colleges-grid {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
+    gap: 30px;
+    width: max-content;
+}
+
+.colleges-grid .card {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    /* 3 columns visible on desktop: (Container Width - Gaps) / 3 */
+    width: calc((1200px - (2 * 30px)) / 3); 
+    display: flex;
+    flex-direction: column;
+    height: 420px; /* Fixed height for true uniformity */
+    padding: 30px;
+}
+
+/* Make the description take up flexible space to push button down */
+.colleges-grid .card p:nth-of-type(2) {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.colleges-grid .card .btn {
+    margin-top: 20px;
+}
+
+/* Responsive Grid Adjustments */
+@media (min-width: 1201px) {
+    .colleges-grid .card {
+        width: calc((1200px - (2 * 30px)) / 3);
+    }
+}
+
+@media (max-width: 1200px) {
+    .colleges-grid {
+        gap: 25px;
+    }
+    .colleges-grid .card {
+        /* 2.5 columns to show a peek of the next one */
+        width: calc((100vw - 40px - (2 * 25px)) / 2.5); 
+    }
+}
+
+@media (max-width: 767px) {
+    .colleges-grid {
+        gap: 20px;
+    }
+    .colleges-grid .card {
+        /* 1.2 columns for a clean mobile scroll peek */
+        width: calc(100vw - 80px);
+    }
+}
+
+
+/* Colleges Slider Overhaul (Absolute Arrows) */
+.colleges-header {
+    margin-bottom: 30px;
+}
+
+.colleges-slider-wrapper {
+    position: relative;
+    padding: 0 10px; /* Some room for arrows on larger screens */
+}
+
+.colleges-controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -22px;
+    right: -22px;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* Don't block clicks to cards beneath */
+    z-index: 100;
+}
+
+.control-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--white);
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--primary);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    pointer-events: auto; /* Re-enable clicks for the buttons */
+}
+
+.control-btn:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+@media (max-width: 1240px) {
+    .colleges-controls {
+        left: 0;
+        right: 0;
+        padding: 0 10px;
+    }
+    .control-btn {
+        width: 38px;
+        height: 38px;
+        background: rgba(255,255,255,0.9);
+    }
+}
+
+@media (max-width: 767px) {
+    .colleges-header {
+        text-align: center;
+    }
+    .colleges-header div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

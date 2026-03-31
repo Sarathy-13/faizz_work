@@ -60,4 +60,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Colleges Slider Controls
+    const collegesContainer = document.querySelector('.colleges-scroll-container');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+
+    if (collegesContainer && prevBtn && nextBtn) {
+        const getScrollAmount = () => {
+            const card = collegesContainer.querySelector('.card');
+            if (!card) return 300;
+            
+            // Get card width and compute the gap from CSS grid
+            const grid = collegesContainer.querySelector('.colleges-grid');
+            const style = window.getComputedStyle(grid);
+            const gap = parseInt(style.getPropertyValue('gap')) || 30;
+            return card.offsetWidth + gap;
+        };
+
+        prevBtn.addEventListener('click', () => {
+            collegesContainer.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            collegesContainer.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
+    }
 });
